@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "question": "Who won the 2022 NBA Championships?",
+    "answers": [
+      "Boston Celtics",
+      "Golden State Warriors",
+      "Miami Heat",
+      "LA Lakers"
+    ],
+    "correct_answer": "Golden State Warriors"
+  },
+  {
+    "id": "2",
+    "question": "What is 2+2?",
+    "answers": [
+      "2",
+      "23",
+      "30",
+      "4"
+    ],
+    "correct_answer": "4"
+  },
+  {
+    "id": "3",
+    "question": "What is fastest land animal?",
+    "answers": [
+      "Cheetah",
+      "Goldfish",
+      "Human",
+      "Bald Eagle"
+    ],
+    "correct_answer": "Cheetah"
+  },
+  {
+    "id": "4",
+    "question": "What is the purpose of a mitochondria?",
+    "answers": [
+      "Copies DNA",
+      "Kills germs",
+      "The powerhouse of the cell",
+      "Cleans waste"
+    ],
+    "correct_answer": "The powerhouse of the cell"
+  },
+  {
+    "id": "5",
+    "question": "When was Indeed founded?",
+    "answers": [
+      "2000",
+      "2004",
+      "2021",
+      "1998"
+    ],
+    "correct_answer": "2004"
+  }
+]
