@@ -1,0 +1,37 @@
+@import '../../styles/_variables.scss';
+
+.NavBar {
+  height: 75px;
+  background: $background-card-lightest;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 10rem;
+
+  .Logo {
+    height: 60px;
+  }
+
+  .NavButtonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10%;
+
+    .NavButton {
+      height: 3rem;
+      width: 5rem;
+      border-radius: 5px;
+      background-color: $background-card-dark;
+      color: $font-light;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $background-card-light;
+        border-color: $background-card-light;
+        color: $font-dark
+      }
+    }
+  }
+}
