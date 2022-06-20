@@ -1,0 +1,50 @@
+@import '../../styles/variables';
+
+.Card {
+  height: 30rem;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $background-card-dark;
+
+  .CardHeader {
+    width: 100%;
+    text-align: center;
+    background-color: $background-card-light;
+  }
+
+  .CardBody {
+    padding: 2rem;
+    text-align: left;
+
+    .CardQuestion {
+      padding: 1rem;
+
+      .CardQuestionRadio {
+        height: 1.25rem;
+        width: 1.25rem;
+        background-color: $background-card-lightest;
+      }
+    }
+  }
+
+  .CardSubmitBtn {
+    background-color: $background-card-light;
+    color: $font-light;
+    font-size: larger;
+    height: 5rem;
+    width: 15rem;
+
+    &:hover:not(:disabled) {
+      color: $font-dark;
+      background-color: $background-card-lightest;
+    }
+
+    &:disabled {
+      background-color: grey
+    }
+  }
+
+
+}
