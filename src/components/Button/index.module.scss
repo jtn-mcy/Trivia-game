@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.NavButton {
+  height: 4vh;
+  width: 5rem;
+  border-radius: 5px;
+  background-color: $background-card-dark;
+  color: $font-light;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $background-card-light;
+    border-color: $background-card-light;
+    color: $font-dark
+  }
+}
+
+.Play {
+  height: 4vh;
+  width: 5rem;
+  background-color: $background-card-lightest;
+  color: $font-dark
+}
