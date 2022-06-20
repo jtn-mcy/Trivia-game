@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { Question, useAppDispatch } from '../../api';
 import styles from './index.module.scss';
-import { increment, decrement } from '../../state/score/scoreSlice';
+import { increment as incrementScore, decrement as decrementScore } from '../../state/score/scoreSlice';
+import { increment as incrementQuestion, decrement as decrementQuestion } from '../../state/questions/questionSlice'
 
 const QuestionCard: React.FC<{ question: Question }> = ({ question }) => {
   const [answer, setAnswer] = useState<string | undefined>();
+  const [isCorrect, setIsCorrect] = useState<boolean | undefined>();
   const dispatch = useAppDispatch();
   const handleFormSubmission = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (answer === question.correct_answer) {
-      dispatch(increment());
-      setAnswer(undefined)
+      dispatch(incrementScore());
+      setIsCorrect(true)
     } else {
-      dispatch(decrement());
-      setAnswer(undefined);
+      dispatch(decrementScore());
+      setIsCorrect(false);
     }
+    dispatch(incrementQuestion())
   }
 
   return (
@@ -29,14 +32,22 @@ const QuestionCard: React.FC<{ question: Question }> = ({ question }) => {
             {question.answers.map(answerOption => {
               return (
                 <div key={answerOption} className={styles.CardQuestion}>
-                  <input className={styles.CardQuestionRadio} type='radio' id={answerOption} value={answer} checked={answer === answerOption} onChange={() => setAnswer(answerOption)} />
+                  <input className={styles.CardQuestionRadio} type='radio' id={answerOption} value={answer} checked={answer === answerOption} onChange={() => setAnswer(answerOption)} disabled={isCorrect !== undefined} />
                   <label htmlFor={answerOption}>{answerOption}</label>
                 </div>
               )
             })}
           </div>
-          <button className={styles.CardSubmitBtn} disabled={!answer}>Submit answer</button>
+          <button className={styles.CardSubmitBtn} disabled={!answer || isCorrect !== undefined}>Submit answer</button>
         </form>
+        {isCorrect !== undefined ?
+          (answer && isCorrect) ? (
+            <h3>{`Yes! ${question.correct_answer} is the correct answer! +1 score`}</h3>
+          ) : (
+            <h3>{`Oh no! ${answer} was not the correct answer. The correct answer was ${question.correct_answer}! -1 score`}</h3>
+          )
+          : null
+        }
       </div>
     </div>
   )

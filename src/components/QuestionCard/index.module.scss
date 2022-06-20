@@ -15,11 +15,14 @@
   }
 
   .CardBody {
-    padding: 2rem;
-    text-align: left;
+    height: 80%;
+      width: 80%;
+      text-align: center;
+      padding-top: 1rem;
 
     .CardQuestion {
-      padding: 1rem;
+      text-align: left;
+        padding: 0.5rem;
 
       .CardQuestionRadio {
         height: 1.25rem;
@@ -45,6 +48,5 @@
       background-color: grey
     }
   }
-
 
 }
