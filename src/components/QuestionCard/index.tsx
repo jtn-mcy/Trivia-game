@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Question, useAppDispatch } from '../../api';
 import styles from './index.module.scss';
 import { increment as incrementScore, decrement as decrementScore } from '../../state/score/scoreSlice';
-import { increment as incrementQuestion, decrement as decrementQuestion } from '../../state/questions/questionSlice'
+import { increment as incrementQuestion } from '../../state/questions/questionSlice'
 
 const QuestionCard: React.FC<{ question: Question }> = ({ question }) => {
   const [answer, setAnswer] = useState<string | undefined>();

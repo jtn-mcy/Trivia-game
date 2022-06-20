@@ -1,12 +1,11 @@
 import React, { useEffect, useState, } from 'react'
-import { Question, useGetRandomQuestion, useAppSelector, useAppDispatch } from "./api";
+import { Question, useGetRandomQuestion } from "./api";
 import './styles/_global.scss';
-import { increment, decrement } from './state/score/scoreSlice';
 import UserNameContextWrapper from './contexts/UserName';
 import Layout from './layout';
-import CurrentUser from './components/CurrentUser';
 import QuestionCard from './components/QuestionCard';
-
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
 const App: React.FC = () => {
   const [test, setTest] = useState<Question>()
   useEffect(() => setTest(useGetRandomQuestion()), [])
@@ -14,7 +13,12 @@ const App: React.FC = () => {
   return (
     <UserNameContextWrapper>
       <Layout>
-        {test && <QuestionCard question={test} />}
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/play' element={test && <QuestionCard question={test} />} />
+          <Route path='/highscores' />
+          <Route path='*' element={<Home />} />
+        </Routes>
       </Layout>
     </UserNameContextWrapper>
   );

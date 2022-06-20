@@ -9,12 +9,13 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const score = useAppSelector(state => state.score.value);
-
+  const question = useAppSelector(state => state.question.value)
   return (
     <div className={styles.Layout}>
       <NavBar />
       <CurrentUser />
       <h2>Score: {score}</h2>
+      <h2>Question {question} out of 5</h2>
       <div className={styles.GameArea}>
       {children}
       </div>
