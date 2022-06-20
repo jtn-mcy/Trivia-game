@@ -12,7 +12,6 @@ export type Question = {
 export type QuestionsJSON = Question[]
 
 const questionsJSON: QuestionsJSON = questions
-const questionsId: string[] = questions.map((question) => question.id)
 
 export const useGetRandomQuestion = () => {
   return questionsJSON[Math.floor(Math.random() * questionsJSON.length)]
