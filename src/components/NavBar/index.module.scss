@@ -1,7 +1,7 @@
 @import '../../styles/_variables.scss';
 
 .NavBar {
-  height: 75px;
+  height: 5vh;
   background: $background-card-lightest;
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
   padding: 0 10rem;
 
   .Logo {
-    height: 60px;
+    height: 4vh;
   }
 
   .NavButtonContainer {
@@ -20,7 +20,7 @@
     width: 10%;
 
     .NavButton {
-      height: 3rem;
+      height: 4vh;
       width: 5rem;
       border-radius: 5px;
       background-color: $background-card-dark;

@@ -2,4 +2,12 @@
 
 .Layout {
   margin: 0 2rem;
+  height: 95vh;
+  
+    .GameArea {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 }
