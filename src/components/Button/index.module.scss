@@ -1,15 +1,30 @@
 @import '../../styles/variables';
 
+.Abandon {
+  height: 5rem;
+  width: 10rem;
+  margin: 5px;
+  background-color: $button-danger;
+  color: $font-light;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $button-danger-hover;
+    border-color: $button-danger-hover;
+    color: $font-light
+  }
+}
+
 .NavButton {
   height: 4vh;
   width: 5rem;
   border-radius: 5px;
   background-color: $background-card-dark;
   color: $font-light;
-
+  
   &:hover {
     cursor: pointer;
-    background-color: $background-card-light;
+    background-color: $background-card-lightest;
     border-color: $background-card-light;
     color: $font-dark
   }
@@ -22,6 +37,25 @@
   background-color: $background-card-dark;
   color: $font-light;
   
+  &:disabled {
+    background-color: $background-card-darkest;
+  }
+  
+  &:hover:not(:disabled) {
+      cursor: pointer;
+      background-color: $background-card-lightest;
+      border-color: $background-card-lightest;
+      color: $font-dark
+    }
+  }
+  
+.NextQuestion {
+  height: 5rem;
+  width: 10rem;
+  margin: 5px;
+  background-color: $background-card-light;
+  color: $font-dark;
+
   &:hover {
     cursor: pointer;
     background-color: $background-card-lightest;

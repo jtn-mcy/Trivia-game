@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 
 export interface Button extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
-  btnType: 'NavButton' | 'Play'
+  btnType: 'NavButton' | 'Play' | 'NextQuestion' | 'Abandon'
 }
 
 const Button: React.FC<Button> = ({ text, btnType, ...props }) => {
