@@ -6,6 +6,8 @@ import Layout from './layout';
 import QuestionCard from './components/QuestionCard';
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import HighScores from './pages/HighScores';
+
 const App: React.FC = () => {
   const inPlay = useAppSelector(state => state.question.inPlay)
 
@@ -15,7 +17,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/play' element={inPlay ? <QuestionCard /> : <Home />} />
-          <Route path='/highscores' />
+          <Route path='/highscores' element={<HighScores />}/>
           <Route path='*' element={<Home />} />
         </Routes>
       </Layout>
