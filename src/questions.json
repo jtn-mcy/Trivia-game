@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "type": "single",
     "question": "Who won the 2022 NBA Championships?",
     "answers": [
       "Boston Celtics",
@@ -8,10 +9,12 @@
       "Miami Heat",
       "LA Lakers"
     ],
-    "correct_answer": "Golden State Warriors"
+    "correct_answer": "Golden State Warriors",
+    "value": 2
   },
   {
     "id": "2",
+    "type": "single",
     "question": "What is 2+2?",
     "answers": [
       "2",
@@ -19,10 +22,12 @@
       "30",
       "4"
     ],
-    "correct_answer": "4"
+    "correct_answer": "4",
+    "value": 1
   },
   {
     "id": "3",
+    "type": "single",
     "question": "What is fastest land animal?",
     "answers": [
       "Cheetah",
@@ -30,10 +35,12 @@
       "Human",
       "Bald Eagle"
     ],
-    "correct_answer": "Cheetah"
+    "correct_answer": "Cheetah",
+    "value": 2
   },
   {
     "id": "4",
+    "type": "single",
     "question": "What is the purpose of a mitochondria?",
     "answers": [
       "Copies DNA",
@@ -41,10 +48,12 @@
       "The powerhouse of the cell",
       "Cleans waste"
     ],
-    "correct_answer": "The powerhouse of the cell"
+    "correct_answer": "The powerhouse of the cell",
+    "value": 3
   },
   {
     "id": "5",
+    "type": "single",
     "question": "When was Indeed founded?",
     "answers": [
       "2000",
@@ -52,6 +61,15 @@
       "2021",
       "1998"
     ],
-    "correct_answer": "2004"
+    "correct_answer": "2004",
+    "value": 5
+  },
+  {
+    "id": "6",
+    "type": "multiple",
+    "question": "Which are programming languages?",
+    "answers": ["C", "Python", "JavaScript", "Orc"],
+    "correct_answer": ["C", "Python", "JavaScript"],
+    "value": 3
   }
 ]

@@ -4,9 +4,11 @@ import questions from '../questions.json'
 
 export type Question = {
   id: string,
+  type: string,
   question: string,
   answers: string[],
-  correct_answer: string
+  correct_answer: string | string[]
+  value: number
 }
 
 export type QuestionsJSON = Question[]
