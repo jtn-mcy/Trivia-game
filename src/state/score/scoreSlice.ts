@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const scoreSlice = createSlice({
   name: "score",
@@ -6,8 +6,8 @@ export const scoreSlice = createSlice({
     value: 0,
   },
   reducers: {
-    increment: state => {
-      state.value += 1
+    increment: (state, action: PayloadAction<number>) => {
+      state.value += action.payload
     },
     decrement: state => {
       state.value -= 1

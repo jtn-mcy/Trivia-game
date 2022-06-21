@@ -1,10 +1,15 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '../state/store'
-import questions from '../questions.json'
+import * as questions from '../questions.json'
+
+export enum QuestionType {
+  single = "single",
+  multiple = "multiple"
+}
 
 export type Question = {
   id: string,
-  type: string,
+  type: QuestionType | string
   question: string,
   answers: string[],
   correct_answer: string | string[]
