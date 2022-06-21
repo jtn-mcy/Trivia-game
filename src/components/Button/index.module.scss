@@ -16,8 +16,16 @@
 }
 
 .Play {
-  height: 4vh;
-  width: 5rem;
-  background-color: $background-card-lightest;
-  color: $font-dark
+  height: 5rem;
+  width: 10rem;
+  margin: 5px;
+  background-color: $background-card-dark;
+  color: $font-light;
+  
+  &:hover {
+    cursor: pointer;
+    background-color: $background-card-lightest;
+    border-color: $background-card-lightest;
+    color: $font-dark
+  }
 }

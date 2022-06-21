@@ -18,20 +18,5 @@
     justify-content: space-between;
     align-items: center;
     width: 10%;
-
-    .NavButton {
-      height: 4vh;
-      width: 5rem;
-      border-radius: 5px;
-      background-color: $background-card-dark;
-      color: $font-light;
-
-      &:hover {
-        cursor: pointer;
-        background-color: $background-card-light;
-        border-color: $background-card-light;
-        color: $font-dark
-      }
-    }
   }
 }
