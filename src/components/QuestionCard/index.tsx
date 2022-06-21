@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Question, useAppDispatch } from '../../api';
+import { useAppDispatch, useGetCurrentQuestion } from '../../api';
 import styles from './index.module.scss';
 import { increment as incrementScore, decrement as decrementScore } from '../../state/score/scoreSlice';
 import { increment as incrementQuestion } from '../../state/questions/questionSlice'
 
-const QuestionCard: React.FC<{ question: Question }> = ({ question }) => {
+const QuestionCard: React.FC = () => {
   const [answer, setAnswer] = useState<string | undefined>();
   const [isCorrect, setIsCorrect] = useState<boolean | undefined>();
   const dispatch = useAppDispatch();
+  const question = useGetCurrentQuestion();
   const handleFormSubmission = (e: React.FormEvent) => {
     e.preventDefault();
 
