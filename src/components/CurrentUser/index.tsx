@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { UserNameContext } from '../../contexts/UserName'
-
+import { useAppSelector } from '../../api'
 
 const CurrentUser: React.FC = () => {
-  const { userName, setUserName } = useContext(UserNameContext)
+  const { userName } = useContext(UserNameContext)
+  const isPlaying = useAppSelector(state => state.question.inPlay)
 
   return (
     <>
-      <input type='text' value={userName} onChange={e => setUserName(e.target.value)} />
-      <h2>{userName}</h2>
+      <h2>{(userName && isPlaying) ? `Playing as ${userName}` : 'No user playing'}</h2>
     </>
   )
 }
