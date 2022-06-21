@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../api'
 import { useNavigate } from 'react-router-dom'
 import Button from '../Button'
 import styles from './index.module.scss'
+
 const StartForm: React.FC = () => {
   const { userName, setUserName } = useContext(UserNameContext)
   const [numOfQuestions, setNumOfQuestions] = useState<number>(1)
@@ -25,12 +26,12 @@ const StartForm: React.FC = () => {
   }
 
   return (
-    <div >
+    <div>
       <form className={styles.StartForm} onSubmit={e => handleStartPlay(e)}>
         <label htmlFor='username'><h3>Set a username: </h3></label>
         <input id='username' type='text' placeholder='Set a username' onChange={e => setUserName(e.target.value)} />
         <label htmlFor='numOfQuestions'><h3>Number of questions: {numOfQuestions}</h3></label>
-        <input type='range' min={1} max={questions.length} onChange={e => setNumOfQuestions(parseInt(e.target.value))} />
+        <input type='range' min={1} max={questions.length} onChange={e => setNumOfQuestions(parseInt(e.target.value))} defaultValue={1}/>
         <br/>
         <Button btnType='Play' text='Start game!' disabled={!userName || !numOfQuestions} />
       </form>
