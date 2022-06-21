@@ -1,24 +1,38 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Question } from "../../api";
+
+type questionState = {
+  inPlay: boolean
+  index: number
+  questions: Question[]
+}
 
 export const questionSlice = createSlice({
   name: "question",
   initialState: {
     inPlay: false,
-    value: 1,
-  },
+    index: 0,
+    questions: []
+  } as questionState,
   reducers: {
     increment: state => {
-      state.value += 1
+      state.index += 1
     },
     decrement: state => {
-      state.value -= 1
+      state.index -= 1
     },
     togglePlay: state => {
       state.inPlay = !state.inPlay
+    },
+    addQuestions: (state, action: PayloadAction<Question[]>) => {
+      state.questions = action.payload
+    },
+    clearQuestions: state => {
+      state.questions = []
     }
-  }
+  },
 })
 
-export const { increment, decrement, togglePlay } = questionSlice.actions
+export const { increment, decrement, togglePlay, addQuestions, clearQuestions } = questionSlice.actions
 
 export default questionSlice.reducer
