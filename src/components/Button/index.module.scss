@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/responsive';
 
 .Abandon {
   height: 5rem;
@@ -15,13 +16,35 @@
   }
 }
 
+.Answer {
+  background-color: $background-card-light;
+  color: $font-light;
+  font-size: larger;
+  height: 5rem;
+  max-width: 15rem;
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    color: $font-dark;
+    background-color: $background-card-lightest;
+  }
+
+  &:disabled {
+    background-color: grey
+  }
+}
+
 .NavButton {
-  height: 4vh;
+  height: 4rem;
   width: 5rem;
   border-radius: 5px;
   background-color: $background-card-dark;
   color: $font-light;
   
+  @media screen and (max-width: $screen-sm ) {
+    height: 2rem;
+    
+  }
   &:hover {
     cursor: pointer;
     background-color: $background-card-lightest;

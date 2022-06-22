@@ -1,7 +1,8 @@
 @import '../../styles/_variables.scss';
+@import '../../styles//responsive';
 
 .NavBar {
-  height: 5vh;
+  height: 5rem;
   background: $background-card-lightest;
   display: flex;
   align-items: center;
@@ -10,13 +11,28 @@
   padding: 0 10rem;
 
   .Logo {
-    height: 4vh;
-  }
+    height: 4rem;
 
+    @media screen and (max-width: $screen-sm) {
+      height: 100px
+    }
+  }
+  .Title {
+    @media screen and (max-width: $screen-md) {
+      display: none
+    }
+  }
   .NavButtonContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     align-items: center;
-    width: 10%;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    padding: 0;
+    width: 100vw;
+    flex-direction: column;
   }
 }

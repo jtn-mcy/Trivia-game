@@ -76,7 +76,7 @@ const QuestionForm: React.FC<QuestionForm> = ({ question, answer, setAnswer, isC
           </div>
         ))}
       </div>
-      <button className={styles.CardSubmitBtn} disabled={!answer || isCorrect !== undefined}>Submit answer</button>
+      <Button type='submit' btnType='Answer' disabled={!answer || isCorrect !== undefined} text='Submit Answer' />
   </form>
   )
 }

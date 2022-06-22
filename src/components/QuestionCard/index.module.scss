@@ -31,22 +31,4 @@
       }
     }
   }
-
-  .CardSubmitBtn {
-    background-color: $background-card-light;
-    color: $font-light;
-    font-size: larger;
-    height: 5rem;
-    width: 15rem;
-
-    &:hover:not(:disabled) {
-      color: $font-dark;
-      background-color: $background-card-lightest;
-    }
-
-    &:disabled {
-      background-color: grey
-    }
-  }
-
 }
