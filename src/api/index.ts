@@ -3,9 +3,13 @@ import { RootState, AppDispatch } from '../state/store'
 import * as questions from '../questions.json'
 
 export type Score = {
-  userName: string,
+  id: string
+  userName: string
   score: number
+  date: string
 }
+
+export type Scores = Score[]
 
 export enum QuestionType {
   single = "single",

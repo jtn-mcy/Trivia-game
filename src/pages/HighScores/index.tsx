@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import { getLocalScorage } from '../../utils/LocalScorage'
-
-export type Score = {
-  userName: string,
-  score: number
-}
-
-type Scores = Score[] | []
+import { Scores } from '../../api'
+import styles from './index.module.scss'
 
 const HighScores:React.FC = () => {
   const [scores, setScores] = useState<Scores>([]);
@@ -24,13 +19,19 @@ const HighScores:React.FC = () => {
   }
 
   return (
-    <div>
-      <ul>
-        <h2><u>High Scores</u></h2>
+    <div  className={styles.Grid}>
+        <h2 className={styles.Title}><u>High Scores</u></h2>
+        <div className={styles.Date}><u>Date</u></div>
+        <div className={styles.Username}><u>Username</u></div>
+        <div className={styles.Score}><u>Score</u></div>
         {scores.length 
-          ? scores.map(score => <li key={score.userName}>{score.userName}: {score.score}</li>)
-          : <li>No scores recorded!</li>}
-      </ul>
+          ? scores.map(score => (
+            <>
+              <div key={score.id} className={styles.Date}>{score.date}</div>
+              <div className={styles.Username}>{score.userName}</div>
+              <div className={styles.Score}>{score.score}</div>
+            </>
+          )) : <div className={styles.Title}>No scores recorded!</div>}
       {!warning ? (
           <Button 
             text='Clear high scores'

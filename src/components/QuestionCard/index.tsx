@@ -5,7 +5,7 @@ import { increment as incrementScore, decrement as decrementScore, reset as rese
 import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice'
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
-import { recordScores } from '../../utils/LocalScorage'
+import { recordScores, generateID, getFormattedDate } from '../../utils/LocalScorage'
 import { UserNameContext } from '../../contexts/UserName' 
 
 type GoNextType = {
@@ -36,17 +36,17 @@ const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer}
     if (!isLastQuestion) {
       dispatch(incrementQuestion());
     } else {
-      recordScores({ userName, score })
+      recordScores({ id: generateID(), userName, score, date: getFormattedDate() })
       resetGame();
       navigate('/highscores')
     }
   } 
   return (
-    <Button btnType='NextQuestion' text={!isLastQuestion ? 'Next question': 'Finish game!'} onClick={handleGoNext} />
+    <Button btnType='NextQuestion' text={!isLastQuestion ? 'Next question': 'Score screen'} onClick={handleGoNext} />
   )
 }
 
-type QuestionForm = {
+type QuestionFormType = {
   question: Question
   answer: string[]
   setAnswer: React.Dispatch<React.SetStateAction<string[]>>
@@ -54,7 +54,7 @@ type QuestionForm = {
   handleFormSubmission: (e: React.FormEvent<HTMLFormElement>) => void
 }
 
-const QuestionForm: React.FC<QuestionForm> = ({ question, answer, setAnswer, isCorrect, handleFormSubmission }) => {
+const QuestionForm: React.FC<QuestionFormType> = ({ question, answer, setAnswer, isCorrect, handleFormSubmission }) => {
   const handleCheck = (answerOption: string) => {
     if (answer?.includes(answerOption)) {
       setAnswer( prev => prev.filter(answer => answer !== answerOption))
@@ -144,7 +144,15 @@ const QuestionCard: React.FC = () => {
             </>
           ) : (
             <>
-              <h3>{`Oh no! ${answer} was not the correct answer. The correct answer was ${question.correct_answer}! -1 score`}</h3>
+              <h3>{`Oh no! 
+              ${Array.isArray(question.correct_answer) 
+                ? `${answer.length > 1 
+                    ? `${answer.join (', ')} were not the correct answers`  
+                    : `${answer[0]} was not the correct answer`}`
+                : `${answer}`}. The correct answer was
+              ${Array.isArray(question.correct_answer) 
+                  ? `${question.correct_answer.join(', ')}`
+                  : `${question.correct_answer}`}! -1 score`}</h3>
               <GoNext isLastQuestion={isLastQuestion} setIsCorrect={setIsCorrect} setAnswer={setAnswer}/>
             </>
           )

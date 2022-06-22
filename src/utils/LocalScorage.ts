@@ -15,3 +15,14 @@ export const getLocalScorage: () => Score[] | [] = () => {
   let localScorage: Score[] | [] = JSON.parse(localStorage.getItem('quiz-scores') || "[]")
   return localScorage
 }
+
+export const generateID: () => string = () => {
+  return String(Date.now().toString(32) + Math.random().toString(16)).replace(/\./, '');
+}
+
+export const getFormattedDate: () => string = () => {
+   var result="";
+   var d = new Date();
+   result += `${d.getFullYear()}/${(d.getMonth()+1)}/${d.getDate()}`
+   return result;
+}
