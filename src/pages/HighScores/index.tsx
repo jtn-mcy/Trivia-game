@@ -14,7 +14,7 @@ const HighScores:React.FC = () => {
   
   useEffect(() => {
     setScores(getLocalScorage())
-    }, [scores])
+    }, [])
 
   const handleResetScorage = () => {
     localStorage.setItem('quiz-scores', '[]')
