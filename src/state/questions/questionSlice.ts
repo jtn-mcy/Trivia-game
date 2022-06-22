@@ -21,6 +21,9 @@ export const questionSlice = createSlice({
     decrement: state => {
       state.index -= 1
     },
+    reset: state => {
+      state.index = 0
+    },
     togglePlay: state => {
       state.inPlay = !state.inPlay
     },
@@ -33,6 +36,6 @@ export const questionSlice = createSlice({
   },
 })
 
-export const { increment, decrement, togglePlay, addQuestions, clearQuestions } = questionSlice.actions
+export const { increment, decrement, togglePlay, addQuestions, clearQuestions, reset } = questionSlice.actions
 
 export default questionSlice.reducer

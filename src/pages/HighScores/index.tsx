@@ -11,12 +11,14 @@ type Scores = Score[] | []
 
 const HighScores:React.FC = () => {
   const [scores, setScores] = useState<Scores>([]);
+  const [warning, setWarning] = useState<boolean>(false)
   
   useEffect(() => {
     setScores(getLocalScorage())
     }, [])
 
   const handleResetScorage = () => {
+    setWarning(false);
     localStorage.setItem('quiz-scores', '[]')
     setScores(getLocalScorage())
   }
@@ -29,7 +31,20 @@ const HighScores:React.FC = () => {
           ? scores.map(score => <li key={score.userName}>{score.userName}: {score.score}</li>)
           : <li>No scores recorded!</li>}
       </ul>
-      <Button text='Clear high scores!' btnType='Play' onClick={handleResetScorage}/>
+      {!warning ? (
+          <Button 
+            text='Clear high scores'
+            btnType='Play'
+            onClick={() => setWarning(true)}
+            disabled={!scores.length}/>
+          ) : (
+            <Button 
+              text='Really clear high scores?' 
+              btnType='Abandon' 
+              onClick={handleResetScorage} 
+              onMouseLeave={() => setWarning(false)}/>
+          ) 
+      }
     </div>
   )
 }
