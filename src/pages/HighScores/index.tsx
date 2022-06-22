@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import Button from '../../components/Button'
+import { getLocalScorage } from '../../utils/LocalScorage'
 
-type Score = {
-  name: string
+export type Score = {
+  userName: string,
   score: number
-} 
+}
 
 type Scores = Score[] | []
 
@@ -11,20 +13,23 @@ const HighScores:React.FC = () => {
   const [scores, setScores] = useState<Scores>([]);
   
   useEffect(() => {
-    const localScore = localStorage.getItem('quiz-scores');
-    if (localScore) setScores(JSON.parse(localScore))
-    else {
-      localStorage.setItem('quiz-scores', JSON.stringify([]))
-    }}, [])
+    setScores(getLocalScorage())
+    }, [scores])
+
+  const handleResetScorage = () => {
+    localStorage.setItem('quiz-scores', '[]')
+    setScores(getLocalScorage())
+  }
 
   return (
     <div>
       <ul>
         <h2><u>High Scores</u></h2>
         {scores.length 
-          ? scores.map(score => <li key={score.name}>{score.name}: {score.score}</li>)
+          ? scores.map(score => <li key={score.userName}>{score.userName}: {score.score}</li>)
           : <li>No scores recorded!</li>}
       </ul>
+      <Button text='Clear high scores!' btnType='Play' onClick={handleResetScorage}/>
     </div>
   )
 }

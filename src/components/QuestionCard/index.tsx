@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Question, QuestionType, useAppDispatch, useAppSelector, useGetCurrentQuestion } from '../../api';
 import styles from './index.module.scss';
-import { increment as incrementScore, decrement as decrementScore } from '../../state/score/scoreSlice';
-import { increment as incrementQuestion, clearQuestions } from '../../state/questions/questionSlice'
+import { increment as incrementScore, decrement as decrementScore, reset as resetScore } from '../../state/score/scoreSlice';
+import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice'
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
+import { recordScores } from '../../utils/LocalScorage'
+import { UserNameContext } from '../../contexts/UserName' 
 
 type GoNextType = {
   isLastQuestion: boolean
@@ -15,15 +17,28 @@ type GoNextType = {
 const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer} ) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const score = useAppSelector(state => state.score.value)
+  const {userName} = useContext(UserNameContext)
+  
+  const resetFields = () => {
+    setIsCorrect(undefined);
+    setAnswer([])
+  }
+
+  const resetGame = () => {
+    dispatch(clearQuestions());
+    dispatch(togglePlay());
+    dispatch(resetScore());
+  }
+
   const handleGoNext: () => void = () => {
+    resetFields();
     if (!isLastQuestion) {
-      setIsCorrect(undefined);
-      setAnswer([]);
-      dispatch(incrementQuestion())
+      dispatch(incrementQuestion());
     } else {
-      setAnswer([]);
-      dispatch(clearQuestions())
-      navigate('/highscore')
+      recordScores({ userName, score })
+      resetGame();
+      navigate('/highscores')
     }
   } 
   return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useAppSelector } from "./api";
 import './styles/_global.scss';
 import UserNameContextWrapper from './contexts/UserName';
@@ -7,10 +7,11 @@ import QuestionCard from './components/QuestionCard';
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import HighScores from './pages/HighScores';
+import { appStartupScores } from './utils/LocalScorage';
 
 const App: React.FC = () => {
   const inPlay = useAppSelector(state => state.question.inPlay)
-
+  useEffect(() => appStartupScores(), [])
   return (
     <UserNameContextWrapper>
       <Layout>
