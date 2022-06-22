@@ -2,6 +2,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '../state/store'
 import * as questions from '../questions.json'
 
+export type Score = {
+  userName: string,
+  score: number
+}
+
 export enum QuestionType {
   single = "single",
   multiple = "multiple"
