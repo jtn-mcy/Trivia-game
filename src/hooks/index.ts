@@ -1,13 +1,15 @@
 import { allData } from "../data";
-import { Question } from "../types";
+import { Question, QuestionCategory } from "../types";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../state/store';
 
-export const useGetRandomQuestions: (numQuestions: number) => Question[] = (numQuestions) => {
+export const useGetRandomQuestions: (numQuestions: number, category?: QuestionCategory) => Question[] = (numQuestions, category) => {
   let flag = 0;
   const questions: Question[] = [];
+  const data = category ? allData.filter(question => question.category === category) : allData;
   while (flag < numQuestions) {
-    const questionToAdd = allData[Math.floor(Math.random() * allData.length)];
+    const questionToAdd = data[Math.floor(Math.random() * data.length)]
+
     if (!questions.includes(questionToAdd)) {
       questions.push(questionToAdd);
       flag++;
