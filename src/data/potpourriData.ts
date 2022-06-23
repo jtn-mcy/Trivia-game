@@ -52,9 +52,9 @@ const potpourriData: Question[] = [
     "id": generateID(),
     "type": QuestionType.single,
     "category": QuestionCategory.potpourri,
-    "question": "Which month is Coachella Music Festival typically held each year?",
+    "question": "Which month is Coachella Music Festival typically held every year?",
     "answers": [
-      "Januaryr",
+      "January",
       "June",
       "April",
       "September"
