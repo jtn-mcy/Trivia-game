@@ -1,39 +1,51 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../state/store';
-import * as questions from '../questions.json';
+import data from '../data';
+
 
 export type Score = {
   id: string;
   userName: string;
   score: number;
   date: string;
-}
+};
 
 export type Scores = Score[];
 
 export enum QuestionType {
   single = "single",
   multiple = "multiple",
-}
+};
+
+export enum QuestionCategory {
+  math = "math",
+  sports = "sports",
+  science = "science",
+  potpourri = "potpourri"
+};
 
 export type Question = {
   id: string;
-  type: QuestionType | string;
+  type: QuestionType;
+  category: QuestionCategory;
   question: string;
   answers: string[];
   correct_answer: string | string[];
   value: number;
-}
+};
 
-export type QuestionsJSON = Question[];
-
-const questionsJSON: QuestionsJSON = questions;
+const allData = {
+  ...data.mathData,
+  ...data.potpourriData,
+  ...data.scienceData,
+  ...data.sportsData
+};
 
 export const useGetRandomQuestions: ( numQuestions: number ) => Question[] = (numQuestions) => {
   let flag = 0;
   const questions: Question[] = [];
   while (flag < numQuestions) {
-    const questionToAdd = questionsJSON[Math.floor(Math.random() * questionsJSON.length)];
+    const questionToAdd = allData[Math.floor(Math.random() * allData.length)];
     if (!questions.includes(questionToAdd)) {
       questions.push(questionToAdd);
       flag++;
