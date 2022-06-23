@@ -1,6 +1,6 @@
 import { Score } from '../api'
 
-export const appStartupScores: () => void = () => {
+export const getAppStartupScores: () => void = () => {
   localStorage.getItem('quiz-scores') === null && localStorage.setItem('quiz-scores', JSON.stringify([]))
 }
 

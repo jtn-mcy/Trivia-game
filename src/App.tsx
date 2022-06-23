@@ -7,11 +7,11 @@ import QuestionCard from './components/QuestionCard';
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import HighScores from './pages/HighScores';
-import { appStartupScores } from './utils/LocalScorage';
+import { getAppStartupScores } from './utils/LocalScorage';
 
 const App: React.FC = () => {
   const inPlay = useAppSelector(state => state.question.inPlay)
-  useEffect(() => appStartupScores(), [])
+  useEffect(() => getAppStartupScores(), [])
   return (
     <UserNameContextWrapper>
       <Layout>
