@@ -1,1 +1,1 @@
-export const HomeButtonContainer: string
+export const HomeButtonContainer: string;

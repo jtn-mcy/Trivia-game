@@ -16,8 +16,8 @@ export const scoreSlice = createSlice({
       state.value = 0
     }
   }
-})
+});
 
-export const { increment, decrement, reset } = scoreSlice.actions
+export const { increment, decrement, reset } = scoreSlice.actions;
 
-export default scoreSlice.reducer
+export default scoreSlice.reducer;

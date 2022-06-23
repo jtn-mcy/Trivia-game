@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import { UserNameContext } from '../../contexts/UserName'
-import { useAppSelector } from '../../api'
+import React, { useContext } from 'react';
+import { UserNameContext } from '../../contexts/UserName';
+import { useAppSelector } from '../../api';
 
 const CurrentUser: React.FC = () => {
-  const { userName } = useContext(UserNameContext)
-  const isPlaying = useAppSelector(state => state.question.inPlay)
+  const { userName } = useContext(UserNameContext);
+  const isPlaying = useAppSelector(state => state.question.inPlay);
 
   return (
     <>

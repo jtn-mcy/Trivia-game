@@ -2,27 +2,27 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Question, QuestionType, useAppDispatch, useAppSelector, useGetCurrentQuestion } from '../../api';
 import styles from './index.module.scss';
 import { increment as incrementScore, decrement as decrementScore, reset as resetScore } from '../../state/score/scoreSlice';
-import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice'
+import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice';
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
-import { recordScores, generateID, getFormattedDate } from '../../utils/LocalScorage'
-import { UserNameContext } from '../../contexts/UserName' 
+import { recordScores, generateID, getFormattedDate } from '../../utils/LocalScorage';
+import { UserNameContext } from '../../contexts/UserName' ;
 
 type GoNextType = {
-  isLastQuestion: boolean
-  setAnswer: React.Dispatch<React.SetStateAction<string[]>>
-  setIsCorrect: React.Dispatch<React.SetStateAction<boolean | undefined>> 
+  isLastQuestion: boolean;
+  setAnswer: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsCorrect: React.Dispatch<React.SetStateAction<boolean | undefined>> ;
 }
 
 const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer} ) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const score = useAppSelector(state => state.score.value)
-  const {userName} = useContext(UserNameContext)
+  const score = useAppSelector(state => state.score.value);
+  const {userName} = useContext(UserNameContext);
   
   const resetFields = () => {
     setIsCorrect(undefined);
-    setAnswer([])
+    setAnswer([]);
   }
 
   const resetGame = () => {
@@ -36,29 +36,29 @@ const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer}
     if (!isLastQuestion) {
       dispatch(incrementQuestion());
     } else {
-      recordScores({ id: generateID(), userName, score, date: getFormattedDate() })
+      recordScores({ id: generateID(), userName, score, date: getFormattedDate() });
       resetGame();
-      navigate('/highscores')
+      navigate('/highscores');
     }
   } 
   return (
     <Button btnType='NextQuestion' text={!isLastQuestion ? 'Next question': 'Score screen'} onClick={handleGoNext} />
-  )
-}
+  );
+};
 
 type QuestionFormType = {
-  question: Question
-  answer: string[]
-  setAnswer: React.Dispatch<React.SetStateAction<string[]>>
-  isCorrect: boolean | undefined
-  handleFormSubmission: (e: React.FormEvent<HTMLFormElement>) => void
+  question: Question;
+  answer: string[];
+  setAnswer: React.Dispatch<React.SetStateAction<string[]>>;
+  isCorrect: boolean | undefined;
+  handleFormSubmission: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const QuestionForm: React.FC<QuestionFormType> = ({ question, answer, setAnswer, isCorrect, handleFormSubmission }) => {
   const handleCheck = (answerOption: string) => {
     if (answer?.includes(answerOption)) {
-      setAnswer( prev => prev.filter(answer => answer !== answerOption))
-    } else setAnswer(prev => [...prev, answerOption])
+      setAnswer( prev => prev.filter(answer => answer !== answerOption));
+    } else setAnswer(prev => [...prev, answerOption]);
   }
   return (
     <form onSubmit={handleFormSubmission}>
@@ -78,8 +78,8 @@ const QuestionForm: React.FC<QuestionFormType> = ({ question, answer, setAnswer,
       </div>
       <Button type='submit' btnType='Answer' disabled={!answer || isCorrect !== undefined} text='Submit Answer' />
   </form>
-  )
-}
+  );
+};
 
 const QuestionCard: React.FC = () => {
   const [answer, setAnswer] = useState<string[]>([]);
@@ -95,36 +95,36 @@ const QuestionCard: React.FC = () => {
   }, [question])
 
   const validateMCAnswers: (answer: string[], correct_answers: string[]) => boolean = (answer, correct_answers) => {
-    if (answer.length !== correct_answers.length)  return false
+    if (answer.length !== correct_answers.length)  return false;
     answer.forEach(option => {
-      if (!correct_answers.includes(option)) return false
-    })
-    return true
-  }
+      if (!correct_answers.includes(option)) return false;
+    });
+    return true;
+  };
 
   const correctAnswer = (question: Question) => {
     dispatch(incrementScore(question.value));
-    setIsCorrect(true)
+    setIsCorrect(true);
   }
 
   const incorrectAnswer = () => {
     dispatch(decrementScore());
-    setIsCorrect(false)
+    setIsCorrect(false);
   }
 
   const handleFormSubmission = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (question.type === QuestionType.single && question.correct_answer === answer[0]) {
-      return correctAnswer(question)
-    } 
+      return correctAnswer(question);
+    } ;
     if (question.type === QuestionType.multiple) {
       if (Array.isArray(question.correct_answer)  && validateMCAnswers(answer, question.correct_answer)) {
-        return correctAnswer(question)
-      }
-    }
-    return incorrectAnswer()
-  }
+        return correctAnswer(question);
+      };
+    };
+    return incorrectAnswer();
+  };
 
   return (
     <div className={styles.Card}>
@@ -160,7 +160,7 @@ const QuestionCard: React.FC = () => {
         }
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default QuestionCard
+export default QuestionCard;

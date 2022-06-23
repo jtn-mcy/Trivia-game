@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react';
 
 type Context = {
   userName: string,
@@ -8,13 +8,13 @@ type Context = {
 export const UserNameContext = createContext<Context>({ userName: '', setUserName: () => null });
 
 const UserNameContextWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [userName, setUserName] = useState<string>('')
+  const [userName, setUserName] = useState<string>('');
 
   return (
     <UserNameContext.Provider value={{ userName, setUserName }}>
       {children}
     </UserNameContext.Provider>
-  )
-}
+  );
+};
 
-export default UserNameContextWrapper
+export default UserNameContextWrapper;

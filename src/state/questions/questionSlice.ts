@@ -34,8 +34,8 @@ export const questionSlice = createSlice({
       state.questions = []
     }
   },
-})
+});
 
-export const { increment, decrement, togglePlay, addQuestions, clearQuestions, reset } = questionSlice.actions
+export const { increment, decrement, togglePlay, addQuestions, clearQuestions, reset } = questionSlice.actions;
 
-export default questionSlice.reducer
+export default questionSlice.reducer;

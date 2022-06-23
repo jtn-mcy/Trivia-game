@@ -1,33 +1,33 @@
-import React, { useContext, useState } from 'react'
-import { UserNameContext } from '../../contexts/UserName'
-import questions from '../../questions.json'
-import { togglePlay, addQuestions, reset } from '../../state/questions/questionSlice'
-import { useGetRandomQuestions } from '../../api'
-import { useAppDispatch } from '../../api'
-import { useNavigate } from 'react-router-dom'
-import Button from '../Button'
-import styles from './index.module.scss'
+import React, { useContext, useState } from 'react';
+import { UserNameContext } from '../../contexts/UserName';
+import questions from '../../questions.json';
+import { togglePlay, addQuestions, reset } from '../../state/questions/questionSlice';
+import { useGetRandomQuestions } from '../../api';
+import { useAppDispatch } from '../../api';
+import { useNavigate } from 'react-router-dom';
+import Button from '../Button';
+import styles from './index.module.scss';
 
 const StartForm: React.FC = () => {
-  const { userName, setUserName } = useContext(UserNameContext)
-  const [numOfQuestions, setNumOfQuestions] = useState<number>(1)
+  const { userName, setUserName } = useContext(UserNameContext);
+  const [numOfQuestions, setNumOfQuestions] = useState<number>(1);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const resetAndStartGame = () => {
     const questions = useGetRandomQuestions(numOfQuestions);
-    dispatch(addQuestions(questions))
-    dispatch(reset())
+    dispatch(addQuestions(questions));
+    dispatch(reset());
     dispatch(togglePlay());
-  }
+  };
 
   const handleStartPlay = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     resetAndStartGame();
-    navigate('/play')
-  }
+    navigate('/play');
+  };
 
   return (
     <div>
@@ -40,7 +40,7 @@ const StartForm: React.FC = () => {
         <Button btnType='Play' text='Start game!' disabled={!userName || !numOfQuestions} />
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default StartForm
+export default StartForm;

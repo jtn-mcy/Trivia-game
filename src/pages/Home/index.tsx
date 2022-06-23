@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Button'
-import { useAppSelector, useAppDispatch, useGetRandomQuestions } from '../../api'
-import { togglePlay, addQuestions, clearQuestions } from '../../state/questions/questionSlice'
-import StartForm from '../../components/StartForm'
-import styles from './index.module.scss'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
+import { useAppSelector, useAppDispatch } from '../../api';
+import { togglePlay, clearQuestions } from '../../state/questions/questionSlice';
+import StartForm from '../../components/StartForm';
+import styles from './index.module.scss';
 
 const Home: React.FC = () => {
-  const [isStartPlay, setIsStartPlay] = useState<boolean>(false)
+  const [isStartPlay, setIsStartPlay] = useState<boolean>(false);
   const [isAbandon, setIsAbandon] = useState<boolean>(false);
-  const inPlay = useAppSelector(state => state.question.inPlay)
+  const inPlay = useAppSelector(state => state.question.inPlay);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleAbandonGame = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    dispatch(clearQuestions())
-    dispatch(togglePlay())
+    dispatch(clearQuestions());
+    dispatch(togglePlay());
   }
 
   return (
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         )
       }
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

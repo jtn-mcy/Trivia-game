@@ -1,8 +1,8 @@
-import React from 'react'
-import styles from './index.module.scss'
-import NavBar from '../components/NavBar'
-import CurrentUser from '../components/CurrentUser'
-import Score from '../components/Score'
+import React from 'react';
+import styles from './index.module.scss';
+import NavBar from '../components/NavBar';
+import CurrentUser from '../components/CurrentUser';
+import Score from '../components/Score';
 
 type LayoutProps = {
   children?: JSX.Element | JSX.Element[]
@@ -19,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -1,1 +1,1 @@
-export const StartForm: string
+export const StartForm: string;

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import Button from '../../components/Button'
-import { getLocalScorage } from '../../utils/LocalScorage'
-import { Scores } from '../../api'
-import styles from './index.module.scss'
+import React, { useEffect, useState } from 'react';
+import Button from '../../components/Button';
+import { getLocalScorage } from '../../utils/LocalScorage';
+import { Scores } from '../../api';
+import styles from './index.module.scss';
 
 const HighScores:React.FC = () => {
   const [scores, setScores] = useState<Scores>([]);
-  const [warning, setWarning] = useState<boolean>(false)
+  const [warning, setWarning] = useState<boolean>(false);
   
   useEffect(() => {
-    setScores(getLocalScorage())
-    }, [])
+    setScores(getLocalScorage());
+    }, []);
 
   const handleResetScorage = () => {
     setWarning(false);
-    localStorage.setItem('quiz-scores', '[]')
-    setScores(getLocalScorage())
+    localStorage.setItem('quiz-scores', '[]');
+    setScores(getLocalScorage());
   }
 
   return (
@@ -47,7 +47,7 @@ const HighScores:React.FC = () => {
           ) 
       }
     </div>
-  )
-}
+  );
+};
 
-export default HighScores
+export default HighScores;
