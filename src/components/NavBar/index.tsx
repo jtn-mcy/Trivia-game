@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
     <div className={styles.NavBar}>
       <img src={Logo} alt='Indeed logo' className={styles.Logo} />
       <h1 className={styles.Title}>
-        Trivia!
+        Trivia
       </h1>
       <div className={styles.NavButtonContainer}>
         <HomeButton />

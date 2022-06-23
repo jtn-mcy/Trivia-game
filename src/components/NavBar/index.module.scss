@@ -10,6 +10,15 @@
   margin: 0;
   padding: 0 10rem;
 
+  .Title {
+    font-size: 4rem;
+    color: $font-dark;
+
+    @media screen and (max-width: 1000px) {
+      display: none
+    }
+  }
+
   .Logo {
     height: 4rem;
 
@@ -17,11 +26,7 @@
       height: 100px
     }
   }
-  .Title {
-    @media screen and (max-width: $screen-md) {
-      display: none
-    }
-  }
+
   .NavButtonContainer {
     display: flex;
     justify-content:space-between;

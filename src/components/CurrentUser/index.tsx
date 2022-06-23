@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { UserNameContext } from '../../contexts/UserName'
 import { useAppSelector } from '../../api'
 
