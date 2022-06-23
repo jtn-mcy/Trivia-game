@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { UserNameContext } from '../../contexts/UserName';
-import questions from '../../questions.json';
 import { togglePlay, addQuestions, reset } from '../../state/questions/questionSlice';
-import { useGetRandomQuestions } from '../../api';
-import { useAppDispatch } from '../../api';
+import { useGetRandomQuestions, useAppDispatch } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 import styles from './index.module.scss';
+import { allData } from '../../data';
 
 const StartForm: React.FC = () => {
   const { userName, setUserName } = useContext(UserNameContext);
@@ -35,7 +34,7 @@ const StartForm: React.FC = () => {
         <label htmlFor='username'><h3>Set a username: </h3></label>
         <input id='username' type='text' placeholder='Set a username' onChange={e => setUserName(e.target.value)} />
         <label htmlFor='numOfQuestions'><h3>Number of questions: {numOfQuestions}</h3></label>
-        <input type='range' min={1} max={questions.length} onChange={e => setNumOfQuestions(parseInt(e.target.value))} defaultValue={numOfQuestions}/>
+        <input type='range' min={1} max={allData.length} onChange={e => setNumOfQuestions(parseInt(e.target.value))} defaultValue={numOfQuestions} />
         <br/>
         <Button btnType='Play' text='Start game!' disabled={!userName || !numOfQuestions} />
       </form>

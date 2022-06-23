@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
-import { useAppSelector, useAppDispatch } from '../../api';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { togglePlay, clearQuestions } from '../../state/questions/questionSlice';
 import StartForm from '../../components/StartForm';
 import styles from './index.module.scss';

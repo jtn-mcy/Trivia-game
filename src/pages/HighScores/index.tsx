@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import { getLocalScorage } from '../../utils/LocalScorage';
-import { Scores } from '../../api';
+import { Scores } from '../../types';
 import styles from './index.module.scss';
 
 const HighScores:React.FC = () => {

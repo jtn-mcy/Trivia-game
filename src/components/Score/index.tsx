@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '../../api';
+import { useAppSelector } from '../../hooks';
 
 const Score: React.FC = () => {
   const score = useAppSelector(state => state.score.value);

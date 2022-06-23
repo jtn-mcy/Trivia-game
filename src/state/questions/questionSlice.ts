@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Question } from "../../api";
+import { Question } from "../../types";
 
 type questionState = {
   inPlay: boolean

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { useAppSelector } from "./api";
+import { useAppSelector } from "./hooks";
 import './styles/_global.scss';
 import UserNameContextWrapper from './contexts/UserName';
 import Layout from './layout';

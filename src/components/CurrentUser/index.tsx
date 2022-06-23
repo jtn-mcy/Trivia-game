@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { UserNameContext } from '../../contexts/UserName';
-import { useAppSelector } from '../../api';
+import { useAppSelector } from '../../hooks';
 
 const CurrentUser: React.FC = () => {
   const { userName } = useContext(UserNameContext);

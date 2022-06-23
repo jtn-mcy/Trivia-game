@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Question, QuestionType, useAppDispatch, useAppSelector, useGetCurrentQuestion } from '../../api';
+import { Question, QuestionType } from '../../types';
+import { useAppDispatch, useAppSelector, useGetCurrentQuestion } from '../../hooks'
 import styles from './index.module.scss';
 import { increment as incrementScore, decrement as decrementScore, reset as resetScore } from '../../state/score/scoreSlice';
 import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice';

@@ -1,4 +1,4 @@
-import { Score } from '../api';
+import { Score } from '../types';
 
 export const getAppStartupScores: () => void = () => {
   localStorage.getItem('quiz-scores') === null && localStorage.setItem('quiz-scores', JSON.stringify([]));

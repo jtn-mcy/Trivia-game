@@ -1,4 +1,4 @@
-import { Question, QuestionCategory, QuestionType } from "../api";
+import { Question, QuestionCategory, QuestionType } from "../types";
 import { generateID } from "../utils/LocalScorage";
 
 const scienceData: Question[] = [
