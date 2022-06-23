@@ -1,21 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserNameContext } from '../../contexts/UserName';
 import { togglePlay, addQuestions, reset } from '../../state/questions/questionSlice';
-import { useGetRandomQuestions, useAppDispatch } from '../../hooks';
+import { useGetRandomQuestions, useAppDispatch, useGetCategories, useGetNumberOfCategoryQuestions } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 import styles from './index.module.scss';
-import { allData } from '../../data';
+import { QuestionCategory } from '../../types';
 
 const StartForm: React.FC = () => {
   const { userName, setUserName } = useContext(UserNameContext);
-  const [numOfQuestions, setNumOfQuestions] = useState<number>(1);
+  const categories = useGetCategories();
+  const [selectedNumOfQuestions, setSelectedNumOfQuestions] = useState<number>(1);
+  const [selectedCategory, setSelectedCategory] = useState<QuestionCategory | 'all'>('all');
+  const numberOfQuestions = useGetNumberOfCategoryQuestions(selectedCategory);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    setSelectedNumOfQuestions(1)
+  }, [selectedCategory]);
+
   const resetAndStartGame = () => {
-    const questions = useGetRandomQuestions(numOfQuestions);
+    const questions = useGetRandomQuestions(selectedNumOfQuestions, selectedCategory);
     dispatch(addQuestions(questions));
     dispatch(reset());
     dispatch(togglePlay());
@@ -32,11 +39,36 @@ const StartForm: React.FC = () => {
     <div>
       <form className={styles.StartForm} onSubmit={e => handleStartPlay(e)}>
         <label htmlFor='username'><h3>Set a username: </h3></label>
-        <input id='username' type='text' placeholder='Set a username' onChange={e => setUserName(e.target.value)} />
-        <label htmlFor='numOfQuestions'><h3>Number of questions: {numOfQuestions}</h3></label>
-        <input type='range' min={1} max={allData.length} onChange={e => setNumOfQuestions(parseInt(e.target.value))} defaultValue={numOfQuestions} />
+        <input
+          id='username'
+          type='text'
+          placeholder='Set a username'
+          onChange={e => setUserName(e.target.value)}
+        />
+
+        <label htmlFor='categories'><h3>Optional: Choose a category.</h3></label>
+        <select
+          id='categories'
+          name='categories'
+          value={selectedCategory}
+          defaultValue={'all'}
+          onChange={e => setSelectedCategory(e.target.value as QuestionCategory | 'all')}
+        >
+          <option value='all'>Any</option>
+          {categories && categories.map(category =>
+            <option key={category} value={category}>{category[0].toUpperCase() + category.slice(1)}</option>)}
+        </select>
+
+        <label htmlFor='numOfQuestions'><h3>Maximum of questions: {numberOfQuestions}</h3></label>
+        <input
+          type='number'
+          min={1}
+          max={numberOfQuestions}
+          onChange={e => setSelectedNumOfQuestions(parseInt(e.target.value))}
+        />
         <br/>
-        <Button btnType='Play' text='Start game!' disabled={!userName || !numOfQuestions} />
+
+        <Button btnType='Play' text='Start game!' disabled={!userName || !selectedNumOfQuestions} />
       </form>
     </div>
   );

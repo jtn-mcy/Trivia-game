@@ -28,4 +28,3 @@ export enum QuestionCategory {
   science = "science",
   potpourri = "potpourri"
 };
-
