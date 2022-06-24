@@ -21,8 +21,14 @@ export const generateID: () => string = () => {
 };
 
 export const getFormattedDate: () => string = () => {
-   var result="";
-   var d = new Date();
-   result += `${d.getFullYear()}/${(d.getMonth()+1)}/${d.getDate()}`;
-   return result;
+  let result = "";
+  let d = new Date();
+  let hours: string | number = d.getHours();
+  hours = hours > 12 ? hours - 12 : hours;
+  let minutes: string | number = d.getMinutes();
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
+  result += `${d.getFullYear()}/${
+    d.getMonth() + 1
+  }/${d.getDate()} ${hours}:${minutes} ${d.getHours() < 12 ? "am" : "pm"}`;
+  return result;
 };

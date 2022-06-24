@@ -52,6 +52,11 @@
     border-color: $background-card-light;
     color: $font-dark
   }
+  
+  &:disabled {
+    color: $font-light;
+    background-color: grey;
+  }
 }
 
 .Play {

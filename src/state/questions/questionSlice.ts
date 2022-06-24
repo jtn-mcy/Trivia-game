@@ -3,6 +3,7 @@ import { Question } from "../../types";
 
 type questionState = {
   inPlay: boolean
+  isLastSubmit: boolean
   index: number
   questions: Question[]
 }
@@ -11,6 +12,7 @@ export const questionSlice = createSlice({
   name: "question",
   initialState: {
     inPlay: false,
+    isLastSubmit: false,
     index: 0,
     questions: []
   } as questionState,
@@ -27,6 +29,9 @@ export const questionSlice = createSlice({
     togglePlay: state => {
       state.inPlay = !state.inPlay
     },
+    toggleIsLastSubmit: (state) => {
+      state.isLastSubmit = !state.isLastSubmit;
+    },
     addQuestions: (state, action: PayloadAction<Question[]>) => {
       state.questions = action.payload
     },
@@ -36,6 +41,6 @@ export const questionSlice = createSlice({
   },
 });
 
-export const { increment, decrement, togglePlay, addQuestions, clearQuestions, reset } = questionSlice.actions;
+export const { increment, decrement, togglePlay, toggleIsLastSubmit, addQuestions, clearQuestions, reset } = questionSlice.actions;
 
 export default questionSlice.reducer;
