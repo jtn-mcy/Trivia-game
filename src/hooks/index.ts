@@ -2,21 +2,19 @@ import { allData } from "../data";
 import { Question, QuestionCategory } from "../types";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../state/store';
+import { shuffleArray } from "../utils/shuffler";
 
-export const useGetRandomQuestions: (numQuestions: number, category: QuestionCategory | 'all') => Question[] = (numQuestions, category) => {
-  let flag = 0;
-  const questions: Question[] = [];
-  const data = category !== 'all' ? allData.filter(question => question.category === category) : allData;
-  while (flag < numQuestions) {
-    const questionToAdd = data[Math.floor(Math.random() * data.length)]
+export const getRandomQuestions: (
+  numQuestions: number,
+  category: QuestionCategory | "all"
+) => Question[] = (numQuestions, category) => {
+  let questions: Question[] =
+    category !== "all"
+      ? allData.filter((question) => question.category === category)
+      : allData;
+  questions = shuffleArray(questions);
 
-    if (!questions.includes(questionToAdd)) {
-      questions.push(questionToAdd);
-      flag++;
-    };
-  };
-
-  return questions;
+  return questions.slice(0, numQuestions);
 };
 
 export const useGetCurrentQuestion: () => Question = () => {

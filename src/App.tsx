@@ -3,7 +3,7 @@ import { useAppSelector } from "./hooks";
 import './styles/_global.scss';
 import UserNameContextWrapper from './contexts/UserName';
 import Layout from './layout';
-import QuestionCard from './components/QuestionCard';
+import QuestionCard from './pages/QuestionCard';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import HighScores from './pages/HighScores';
