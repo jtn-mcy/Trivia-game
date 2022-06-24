@@ -23,14 +23,14 @@ const HighScores:React.FC = () => {
         <h2 className={styles.Title}><u>High Scores</u></h2>
         <div className={styles.Date}><u>Date</u></div>
         <div className={styles.Username}><u>Username</u></div>
-        <div className={styles.Score}><u>Score</u></div>
+        <div className={styles.Score}><u>Score</u></div>  
         {scores.length 
           ? scores.map(score => (
-            <>
-              <div key={score.id} className={styles.Date}>{score.date}</div>
+            <React.Fragment key={score.id}>
+              <div  className={styles.Date}>{score.date}</div>
               <div className={styles.Username}>{score.userName}</div>
               <div className={styles.Score}>{score.score}</div>
-            </>
+            </React.Fragment>
           )) : <div className={styles.Title}>No scores recorded!</div>}
       {!warning ? (
           <Button 
