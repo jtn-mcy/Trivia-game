@@ -3,23 +3,26 @@ import Logo from "../../IndeedLogo.svg";
 import styles from './index.module.scss';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
+import { useAppSelector } from '../../hooks';
 
-const HighScoreButton: React.FC = () => {
+const HighScoreButton: React.FC<{ disabled: boolean }> = ({ disabled }) => {
   const navigate = useNavigate();
   return (
-    <Button btnType='NavButton' onClick={() => navigate('/highscores')} text='High Scores' />
+    <Button btnType='NavButton' onClick={() => navigate('/highscores')} text='High Scores' disabled={disabled} />
   );
 };
 
-const HomeButton: React.FC = () => {
+const HomeButton: React.FC<{ disabled: boolean }> = ({ disabled }) => {
   const navigate = useNavigate();
 
   return (
-    <Button btnType='NavButton' onClick={() => navigate('/home')} text='Home' />
+    <Button btnType='NavButton' onClick={() => navigate('/home')} text='Home' disabled={disabled} />
   );
 };
 
 const Navbar: React.FC = () => {
+  const inSubmission = useAppSelector((state) => state.question.isLastSubmit);
+
   return (
     <div className={styles.NavBar}>
       <img src={Logo} alt='Indeed logo' className={styles.Logo} />
@@ -27,8 +30,8 @@ const Navbar: React.FC = () => {
         Trivia
       </h1>
       <div className={styles.NavButtonContainer}>
-        <HomeButton />
-        <HighScoreButton />
+        <HomeButton disabled={inSubmission} />
+        <HighScoreButton disabled={inSubmission} />
       </div>
     </div>
   );

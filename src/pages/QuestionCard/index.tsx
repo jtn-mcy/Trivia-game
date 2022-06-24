@@ -3,7 +3,7 @@ import { Question, QuestionType } from '../../types';
 import { useAppDispatch, useAppSelector, useGetCurrentQuestion } from '../../hooks'
 import styles from './index.module.scss';
 import { increment as incrementScore, decrement as decrementScore, reset as resetScore } from '../../state/score/scoreSlice';
-import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice';
+import { increment as incrementQuestion, clearQuestions, togglePlay, toggleIsLastSubmit } from '../../state/questions/questionSlice';
 import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { recordScores, generateID, getFormattedDate } from '../../utils/LocalScorage';
@@ -21,12 +21,19 @@ const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer}
   const score = useAppSelector(state => state.score.value);
   const {userName, setUserName} = useContext(UserNameContext);
   
+  useEffect(() => {
+    if (isLastQuestion) {
+      dispatch(toggleIsLastSubmit());
+    }
+  }, [dispatch, isLastQuestion]);
+
   const resetFields = () => {
     setIsCorrect(undefined);
     setAnswer([]);
   }
 
   const resetGame = () => {
+    dispatch(toggleIsLastSubmit());
     dispatch(clearQuestions());
     dispatch(togglePlay());
     dispatch(resetScore());
