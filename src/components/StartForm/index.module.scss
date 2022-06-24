@@ -1,0 +1,14 @@
+.StartForm {
+  display: flex;
+  flex-direction: column;
+
+  .Input {
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .Select {
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+}

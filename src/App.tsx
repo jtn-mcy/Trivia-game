@@ -1,16 +1,29 @@
-/** @jsxImportSource @emotion/react */
-import { ReactComponent as Logo } from "./IndeedLogo.svg";
+import React, {useEffect} from 'react';
+import { useAppSelector } from "./hooks";
+import './styles/_global.scss';
+import UserNameContextWrapper from './contexts/UserName';
+import Layout from './layout';
+import QuestionCard from './components/QuestionCard';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import HighScores from './pages/HighScores';
+import { getAppStartupScores } from './utils/LocalScorage';
 
-export default function App() {
+const App: React.FC = () => {
+  const inPlay = useAppSelector(state => state.question.inPlay);
+  useEffect(() => getAppStartupScores(), []);
   return (
-    <div css={{ padding: "0 16px" }}>
-      <Logo />
-      <p css={{ fontFamily: "Roboto" }}>
-        Hello candidate. Welcome to the Indeed Design Engineering take home
-        exercise. You will find directions to get started in the readme file.
-        After reviewing the readme, please reach out to your recruiter with any
-        questions.
-      </p>
-    </div>
+    <UserNameContextWrapper>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/play' element={inPlay ? <QuestionCard /> : <Home />} />
+          <Route path='/highscores' element={<HighScores />}/>
+          <Route path='*' element={<Home />} />
+        </Routes>
+      </Layout>
+    </UserNameContextWrapper>
   );
-}
+};
+
+export default App;
