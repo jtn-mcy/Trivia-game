@@ -18,7 +18,8 @@ type GoNextType = {
 const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer} ) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const score = useAppSelector(state => state.score.value);
+  const { value, questions_correct} = useAppSelector(state => state.score);
+  const numberOfQuestions = useAppSelector(state => state.question.questions.length)
   const {userName, setUserName} = useContext(UserNameContext);
   
   useEffect(() => {
@@ -45,13 +46,20 @@ const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer}
     if (!isLastQuestion) {
       dispatch(incrementQuestion());
     } else {
-      recordScores({ id: generateID(), userName, score, date: getFormattedDate() });
+      recordScores({ id: generateID(), userName, score: value, date: getFormattedDate() });
       resetGame();
       navigate('/highscores');
     }
   } 
   return (
+    <>
     <Button btnType='NextQuestion' text={!isLastQuestion ? 'Next question': 'Score screen'} onClick={handleGoNext} />
+    {isLastQuestion && 
+      <h4>
+        {questions_correct > (numberOfQuestions/2) ? 'Woah!' : 'Oh!'} You got {questions_correct} out of {numberOfQuestions} questions correct. {questions_correct > (numberOfQuestions/2) ? 'You are a trivia master!' : 'Play again and try to get a higher score!'}
+      </h4>
+    }
+    </>
   );
 };
 
