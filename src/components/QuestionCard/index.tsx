@@ -72,8 +72,10 @@ const QuestionForm: React.FC<QuestionFormType> = ({ question, answer, setAnswer,
           ))}
         {question.type === QuestionType.multiple && question.answers.map(answerOption => (
           <div key={answerOption} className={styles.CardQuestion}>
-            <input type='checkbox' id={answerOption} value={answer} checked={answer?.includes(answerOption)} onChange={() => handleCheck(answerOption)} disabled={isCorrect !== undefined}/>
-            <label htmlFor={answerOption}>{answerOption}</label>
+            <label className={styles.CheckboxContainer} htmlFor={answerOption}>{answerOption}
+              <input type='checkbox' id={answerOption} value={answer} checked={answer?.includes(answerOption)} onChange={() => handleCheck(answerOption)} disabled={isCorrect !== undefined}/>
+              <span></span>
+            </label>
           </div>
         ))}
       </div>

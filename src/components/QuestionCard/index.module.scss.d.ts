@@ -4,3 +4,4 @@ export const CardBody: string;
 export const CardQuestion: string;
 export const CardQuestionRadio: string;
 export const CardSubmitBtn: string;
+export const CheckboxContainer: string;

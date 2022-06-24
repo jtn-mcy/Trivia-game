@@ -29,6 +29,54 @@
         width: 1.25rem;
         background-color: $background-card-lightest;
       }
+
+      .CheckboxContainer {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover span, &:focus-within span {
+          background-color: $background-card-lightest
+        }
+
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+          
+          ~span {
+            position:absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+  
+          }
+          &:checked~span {
+            background-color: $background-card-light;
+          }
+  
+          ~span:after {
+            content: "🧠";
+            left: 2px;
+            top: 1px;
+            position: absolute;
+            display: none;
+          }
+  
+          &:checked~span:after {
+            display: block
+          }
+        }
+      }
     }
   }
 }
