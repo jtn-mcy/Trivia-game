@@ -51,7 +51,6 @@ const StartForm: React.FC = () => {
           id='categories'
           name='categories'
           value={selectedCategory}
-          defaultValue={'all'}
           onChange={e => setSelectedCategory(e.target.value as QuestionCategory | 'all')}
         >
           <option value='all'>Any</option>
