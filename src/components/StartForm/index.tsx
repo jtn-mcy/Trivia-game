@@ -42,7 +42,8 @@ const StartForm: React.FC = () => {
         <input
           id='username'
           type='text'
-          placeholder='Set a username'
+          placeholder='Username'
+          className={styles.Input}
           onChange={e => setUserName(e.target.value)}
         />
 
@@ -50,6 +51,7 @@ const StartForm: React.FC = () => {
         <select
           id='categories'
           name='categories'
+          className={styles.Select}
           value={selectedCategory}
           onChange={e => setSelectedCategory(e.target.value as QuestionCategory | 'all')}
         >
@@ -61,6 +63,7 @@ const StartForm: React.FC = () => {
         <label htmlFor='numOfQuestions'><h3>Maximum of questions: {numberOfQuestions}</h3></label>
         <input
           type='number'
+          className={styles.Input}
           min={1}
           max={numberOfQuestions}
           onChange={e => setSelectedNumOfQuestions(parseInt(e.target.value))}
