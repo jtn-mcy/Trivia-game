@@ -19,7 +19,7 @@ const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer}
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const score = useAppSelector(state => state.score.value);
-  const {userName} = useContext(UserNameContext);
+  const {userName, setUserName} = useContext(UserNameContext);
   
   const resetFields = () => {
     setIsCorrect(undefined);
@@ -30,6 +30,7 @@ const GoNext: React.FC<GoNextType> = ( {setIsCorrect, isLastQuestion, setAnswer}
     dispatch(clearQuestions());
     dispatch(togglePlay());
     dispatch(resetScore());
+    setUserName('');
   }
 
   const handleGoNext: () => void = () => {

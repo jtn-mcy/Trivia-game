@@ -45,6 +45,7 @@ const StartForm: React.FC = () => {
           placeholder='Username'
           className={styles.Input}
           onChange={e => setUserName(e.target.value)}
+          defaultValue={''}
         />
 
         <label htmlFor='categories'><h3>Optional: Choose a category.</h3></label>
@@ -66,6 +67,7 @@ const StartForm: React.FC = () => {
           className={styles.Input}
           min={1}
           max={numberOfQuestions}
+          defaultValue={numberOfQuestions}
           onChange={e => setSelectedNumOfQuestions(parseInt(e.target.value))}
         />
         <br/>
