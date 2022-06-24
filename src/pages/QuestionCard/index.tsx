@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector, useGetCurrentQuestion } from '../../hoo
 import styles from './index.module.scss';
 import { increment as incrementScore, decrement as decrementScore, reset as resetScore } from '../../state/score/scoreSlice';
 import { increment as incrementQuestion, clearQuestions, togglePlay } from '../../state/questions/questionSlice';
-import Button from '../Button';
+import Button from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { recordScores, generateID, getFormattedDate } from '../../utils/LocalScorage';
 import { UserNameContext } from '../../contexts/UserName' ;
@@ -98,11 +98,17 @@ const QuestionCard: React.FC = () => {
     if (questionState.index === questionState.questions.length-1) setIsLastQuestion(true);
   }, [question])
 
-  const validateMCAnswers: (answer: string[], correct_answers: string[]) => boolean = (answer, correct_answers) => {
-    if (answer.length !== correct_answers.length)  return false;
-    answer.forEach(option => {
-      if (!correct_answers.includes(option)) return false;
-    });
+  const validateMCAnswers: (
+    answers: string[],
+    correct_answers: string[]
+  ) => boolean = (answers, correct_answers) => {
+    if (answer.length !== correct_answers.length) return false;
+    const answerCheckMap: { [key: string]: boolean } = {};
+    correct_answers.forEach((answer) => (answerCheckMap[answer] = true));
+    for (let i = 0; i < answers.length; i++) {
+      let key = answers[i];
+      if (!answerCheckMap[key]) return false;
+    }
     return true;
   };
 
