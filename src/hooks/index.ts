@@ -3,7 +3,7 @@ import { Question, QuestionCategory } from "../types";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../state/store';
 
-export const useGetRandomQuestions: (numQuestions: number, category: QuestionCategory | 'all') => Question[] = (numQuestions, category) => {
+export const getRandomQuestions: (numQuestions: number, category: QuestionCategory | 'all') => Question[] = (numQuestions, category) => {
   let flag = 0;
   const questions: Question[] = [];
   const data = category !== 'all' ? allData.filter(question => question.category === category) : allData;
