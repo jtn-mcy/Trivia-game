@@ -2,7 +2,7 @@
   "name": "de-exercise",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://nguyenjohnnyt.github.io/trivia-game",
+  "homepage": "https://nguyenjohnnyt.github.io/Trivia-game/",
   "keywords": [],
   "main": "src/index.tsx",
   "type": "module",
