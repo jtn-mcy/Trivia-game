@@ -3,11 +3,14 @@ import Button from '../../components/Button';
 import { getLocalScorage } from '../../utils/LocalScorage';
 import { Scores } from '../../types';
 import styles from './index.module.scss';
+import { useNavigate } from "react-router-dom";
+
 
 const HighScores:React.FC = () => {
   const [scores, setScores] = useState<Scores>([]);
   const [warning, setWarning] = useState<boolean>(false);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     setScores(getLocalScorage());
     }, []);
@@ -46,6 +49,7 @@ const HighScores:React.FC = () => {
               onMouseLeave={() => setWarning(false)}/>
           ) 
       }
+      {<Button text="Go Home" btnType="Play" onClick={() => navigate("/")} />}
     </div>
   );
 };
