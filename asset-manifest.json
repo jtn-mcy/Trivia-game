@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Trivia-game/static/css/main.9589a55b.css",
+    "main.css": "/Trivia-game/static/css/main.5e33ee88.css",
     "main.js": "/Trivia-game/static/js/main.40f66b51.js",
     "static/media/eevee.svg": "/Trivia-game/static/media/eevee.215c28252b547602fd0a261f5ed2f970.svg",
     "index.html": "/Trivia-game/index.html",
-    "main.9589a55b.css.map": "/Trivia-game/static/css/main.9589a55b.css.map",
+    "main.5e33ee88.css.map": "/Trivia-game/static/css/main.5e33ee88.css.map",
     "main.40f66b51.js.map": "/Trivia-game/static/js/main.40f66b51.js.map"
   },
   "entrypoints": [
-    "static/css/main.9589a55b.css",
+    "static/css/main.5e33ee88.css",
     "static/js/main.40f66b51.js"
   ]
 }
