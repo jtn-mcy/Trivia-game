@@ -1,0 +1,47 @@
+@import '../../styles/_variables.scss';
+@import '../../styles//responsive';
+
+.NavBar {
+  height: 5rem;
+  background: $background-card-lightest;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 10rem;
+  color: $font-dark;
+
+  .Title {
+    font-size: 4rem;
+
+    @media screen and (max-width: 1000px) {
+      display: none
+    }
+  }
+
+  .Logo {
+    height: 4rem;
+
+    @media screen and (max-width: $screen-sm) {
+      height: 100px
+    }
+  }
+
+  .NavButtonContainer {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    max-width: 200px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    padding: 0;
+    width: 100vw;
+    flex-direction: column;
+
+    .Logo {
+      padding: 0.2rem;
+    }
+  }
+}

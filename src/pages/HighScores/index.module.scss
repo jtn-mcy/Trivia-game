@@ -1,0 +1,26 @@
+@import '../../styles/responsive';
+
+.Grid {
+  display: grid;
+  width: $screen-sm; 
+  grid-template-columns: [date] 1fr [username] 3fr [score] 1fr;
+
+  @media screen and (max-width: $screen-sm) {
+    width: $screen-sm
+  }
+  .Title {
+    grid-column: 1 / -1;
+  }
+
+  .Date {
+    grid-column: 1 / 2;
+  }
+  
+  .Username {
+    grid-column: 2 / 3;
+  }
+
+  .Score {
+    grid-column: 3 / 4;
+  }
+}
