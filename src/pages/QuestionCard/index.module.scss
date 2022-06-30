@@ -12,6 +12,10 @@
     width: 100%;
     text-align: center;
     background-color: $background-card-light;
+
+    h3 {
+      color: $font-dark
+    }
   }
 
   .CardBody {
