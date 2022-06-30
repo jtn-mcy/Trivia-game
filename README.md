@@ -2,6 +2,8 @@
 
 # Trivia game (react-redux)
 
+## Deployed Application [Here!](https://nguyenjohnnyt.github.io/Trivia-game/)
+
 ## Description
 
 Trivia game using React-redux to manage global state for questions and scores. Also has a context provider for keeping track of username for high scores.  Scores are stored locally. 
